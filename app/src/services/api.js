@@ -38,4 +38,8 @@ export default {
       return requete('/plats')
     }
   },
+
+  getOnePlat(id) {
+    return requete(`/plats/${id}`)
+  },
 };
