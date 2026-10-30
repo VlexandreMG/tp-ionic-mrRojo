@@ -55,11 +55,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted , computed} from 'vue';
+import { ref, onMounted , onUnmounted , computed} from 'vue';
 import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
   IonList, IonItem, IonLabel, IonSearchbar, IonBadge,
-  IonRefresher, IonRefresherContent ,IonSpinner, IonText, IonButton, IonSegment , IonSegmentButton
+  IonRefresher, IonRefresherContent ,IonSpinner, IonText, IonButton, IonSegment , IonSegmentButton ,
+  onIonViewWillEnter, onIonViewDidLeave
 } from '@ionic/vue';
 import api from '@/services/api';
 
@@ -105,5 +106,10 @@ onMounted (async () => {
   charger();
   categories.value = await api.getCategories();
 });
+
+onMounted(() => console.log('MENU onMounted'));
+onUnmounted(() => console.log('MENU onUnmounted'));
+onIonViewWillEnter(() => console.log('MENU ionViewWillEnter'));
+onIonViewDidLeave(() => console.log('MENU ionViewDidLeave'));
 
 </script>
