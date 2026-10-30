@@ -3,16 +3,25 @@ import {ref , onMounted} from 'vue';
 import api from '@/services/api';
 import {
     IonHeader , IonPage , IonButtons , IonBackButton , IonCard , IonCardHeader ,
-    IonCardContent , IonCardTitle , IonCardSubtitle , 
+    IonCardContent , IonCardTitle , IonCardSubtitle , IonText
 } from '@ionic/vue'
 import { useRoute } from 'vue-router';
 
 const plat = ref("")
+const erreur = ref("")
 const route = useRoute();
 const id = route.params.id;
 
 async function charger() {
-    plat.value = await api.getOnePlat(id);
+    try {
+        plat.value = await api.getOnePlat(id);
+    } catch (error) {
+        if (error.statut === 404) {
+            erreur.value = "Ce plat n'existe pas"
+        } else {
+            erreur.value = "Impossible de joindre l'API"
+        }
+    }
 }
 
 onMounted(charger);
@@ -26,6 +35,12 @@ onMounted(charger);
               <ion-back-button default-href="/tabs/menu" text="Menu" />
             </ion-buttons>
         </ion-header>
+
+        <div v-if="erreur" class="ion-padding">
+                <ion-text color="danger">
+                <p>{{ erreur }}</p>
+                </ion-text>
+        </div>
 
         <ion-card v-if="plat">
             <ion-card-header>
