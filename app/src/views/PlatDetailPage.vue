@@ -6,11 +6,16 @@ import {
 } from '@ionic/vue'
 import { useRoute } from 'vue-router';
 
+const plat = ref(null)
 const route = useRoute();
 const id = route.params.id;
+
+async function charger() {
+    plat.value = await api.getPlats(id);
+}
+
 onMounted(charger);
 
-const plat = ref(null)
 </script>
 
 <template>
