@@ -7,12 +7,12 @@ import {
 } from '@ionic/vue'
 import { useRoute } from 'vue-router';
 
-const plat = ref(null)
+const plat = ref("")
 const route = useRoute();
 const id = route.params.id;
 
 async function charger() {
-    plat.value = await api.getPlats(id);
+    plat.value = await api.getOnePlat(id);
 }
 
 onMounted(charger);
@@ -27,7 +27,7 @@ onMounted(charger);
             </ion-buttons>
         </ion-header>
 
-        <ion-card>
+        <ion-card v-if="plat">
             <ion-card-header>
                 <ion-card-title>{{ plat.nom }}</ion-card-title>
                 <ion-card-subtitle>{{ plat.categorie.nom }}</ion-card-subtitle>
