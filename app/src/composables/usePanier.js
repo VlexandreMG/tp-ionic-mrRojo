@@ -1,4 +1,4 @@
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 
 const lignes = ref([]);
 
@@ -21,4 +21,14 @@ export function usePanier() {
             }
         }
     }
+
+    function vider() {
+        lignes.value = [];
+    }
+
+    const nombreArticles = computed(() => {
+        const total = lignes.value.reduce((somme,l) => somme + Number(l.plat.prix) * l.quantite, 0)});
+    const total = computed(() => {
+        
+    });
 }
