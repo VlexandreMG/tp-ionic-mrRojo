@@ -24,8 +24,9 @@ const totalEnAriary = computed(() => formatAriary(total.value));
         </div>
 
         <ion-list v-else>
-          <ion-item>
-
+          <ion-item v-for="ligne in lignes" :key="ligne.plat.id">
+            <h2>{{ ligne.plat.nom }}</h2>
+            <p>{{  }}</p>
           </ion-item>
         </ion-list>
     </ion-content>
