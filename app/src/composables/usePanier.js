@@ -8,16 +8,16 @@ export function usePanier() {
         if (ligne != undefined) {
             ligne.quantite++;
         } else {
-            lignes.push({plat,quantite: 1});
+            lignes.value.push({plat,quantite: 1});
         }
     }
 
-    function chargerQuantite(platId , delta) {
+    function changerQuantite(platId , delta) {
         const line = lignes.value.find(l => l.plat.id === platId);
         if (line != undefined) {
             line.quantite += delta;
             if (line.quantite <= 0) {
-                lignes.value.filter(l => l.plat.id != platId);
+                lignes.value = lignes.value.filter(l => l.plat.id != platId);
             }
         }
     }
@@ -26,9 +26,8 @@ export function usePanier() {
         lignes.value = [];
     }
 
-    const nombreArticles = computed(() => {
-        const total = lignes.value.reduce((somme,l) => somme + Number(l.plat.prix) * l.quantite, 0)});
-    const total = computed(() => {
-        
-    });
+    const nombreArticles = computed(() => 
+        lignes.value.reduce((somme,l) => somme + l.quantite, 0));
+    const total = computed(() => 
+        lignes.value.reduce((somme,l) => somme + Number(l.plat.prix) * l.quantite,0));
 }
