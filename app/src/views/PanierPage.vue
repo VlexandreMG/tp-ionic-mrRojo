@@ -25,8 +25,10 @@ const totalEnAriary = computed(() => formatAriary(total.value));
 
         <ion-list v-else>
           <ion-item v-for="ligne in lignes" :key="ligne.plat.id">
-            <h2>{{ ligne.plat.nom }}</h2>
-            <p>{{  }}</p>
+            <ion-label>
+              <h2>{{ ligne.plat.nom }}</h2>
+              <p>{{ formatAriary(ligne.plat.prix) }} × {{ ligne.quantite }}</p>
+            </ion-label>
           </ion-item>
         </ion-list>
     </ion-content>
