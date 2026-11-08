@@ -30,10 +30,10 @@ const totalEnAriary = computed(() => formatAriary(total.value));
               <h2>{{ ligne.plat.nom }}</h2>
               <p>{{ formatAriary(ligne.plat.prix) }} × {{ ligne.quantite }}</p>
             </ion-label>
-            <ion-button slot="end" fill="clear" @click="">
+            <ion-button slot="end" fill="clear" @click="changerQuantite(ligne.plat.id , -1)">
               <ion-icon slot="icon-only" :icon="removeCircleOutline"></ion-icon>
             </ion-button>
-            <ion-button slot="end" fill="clear" @click="">
+            <ion-button slot="end" fill="clear" @click="changerQuantite(ligne.plat.id , +1)">
               <ion-icon slot="icon-only" :icon="addCircleOutline"></ion-icon>
             </ion-button>
           </ion-item>
