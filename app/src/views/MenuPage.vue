@@ -10,7 +10,7 @@ import api from '@/services/api';
 import {addCircleOutline} from 'ionicons/icons';
 import {usePanier} from '@/composables/usePanier';
 
-
+const {ajouter} = usePanier();
 const plats = ref([]);
 const categories = ref([]);
 const chargement = ref(true);
@@ -18,6 +18,15 @@ const erreur = ref(null);
 const recherche = ref("");
 const categorieChoisie  = ref("Toutes");
 const message = ref("")
+
+async function ajouterPanier(plat) {
+  ajouter(plat);
+  const toast = await toastController.create({
+  message: `${plat.nom} ajouté au panier`,
+  duration: 1500, position: 'top', color: 'secondary',
+});
+await toast.present();
+}
 
 const platsFiltre = computed (() => {
     const listePlats = plats.value
