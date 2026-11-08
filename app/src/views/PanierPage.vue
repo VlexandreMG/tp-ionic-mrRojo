@@ -15,6 +15,9 @@ const totalEnAriary = computed(() => formatAriary(total.value));
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Panier</ion-title>
+        <ion-button slot="end" color="secondary" @click="vider">
+          Vider
+        </ion-button>
       </ion-toolbar>
     </ion-header>
 
@@ -41,6 +44,8 @@ const totalEnAriary = computed(() => formatAriary(total.value));
             </ion-label>
           </ion-item>
         </ion-list>
+
+        
     </ion-content>
   </ion-page>
 </template>
