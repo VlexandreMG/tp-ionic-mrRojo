@@ -6,7 +6,10 @@ import {
     IonCardContent , IonCardTitle , IonCardSubtitle , IonText
 } from '@ionic/vue'
 import { useRoute } from 'vue-router';
+import { usePanier } from '@/composables/usePanier';
 
+const { ajouter } = usePanier();
+const ionRouter = useIonRouter();
 const plat = ref("")
 const erreur = ref("")
 const route = useRoute();
