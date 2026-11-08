@@ -4,7 +4,7 @@ import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
   IonList, IonItem, IonLabel, IonSearchbar, IonBadge,
   IonRefresher, IonRefresherContent ,IonSpinner, IonText, IonButton, IonSegment , IonSegmentButton ,
-  onIonViewWillEnter, onIonViewDidLeave
+  onIonViewWillEnter, onIonViewDidLeave, IonIcon , 
 } from '@ionic/vue';
 import api from '@/services/api';
 import {addCircleOutline} from 'ionicons/icons';
@@ -19,7 +19,7 @@ const recherche = ref("");
 const categorieChoisie  = ref("Toutes");
 const message = ref("")
 
-async function ajouterPanier(plat) {
+async function ajouterAuPanier(plat) {
   ajouter(plat);
   const toast = await toastController.create({
   message: `${plat.nom} ajouté au panier`,
@@ -121,6 +121,10 @@ onIonViewDidLeave(() => console.log('MENU ionViewDidLeave'));
             <p>{{ plat.description }}</p>
             <ion-text color="primary"><strong>{{ plat.prix }}</strong></ion-text><ion-badge v-if="!plat.disponible" color="medium">Epuise</ion-badge>
           </ion-label>
+          <ion-button slot="end" fill="clear" :disabled="!plat.disponible"
+            @click.stop.prevent="ajouterAuPanier(plat)">
+            <ion-icon slot="icon-only" :icon="addCircleOutline" />
+          </ion-button>
         </ion-item>
       </ion-list>
     </ion-content>
