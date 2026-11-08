@@ -1,5 +1,5 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem} from '@ionic/vue';
 import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
 import { computed} from 'vue';
@@ -18,7 +18,16 @@ const totalEnAriary = computed(() => formatAriary(total.value));
     </ion-header>
 
     <ion-content class="ion-padding">
-        <ion-text v-if="panierLignes.length === 0" color="danger" >Votre panier est vide</ion-text>
+        <div v-if="panierLignes.length === 0">
+          <ion-text color="danger" >Votre panier est vide</ion-text>
+          <ion-button router-link="/tabs/menu/" color="danger">Voir le menu</ion-button>
+        </div>
+
+        <ion-list v-else>
+          <ion-item>
+
+          </ion-item>
+        </ion-list>
     </ion-content>
   </ion-page>
 </template>
