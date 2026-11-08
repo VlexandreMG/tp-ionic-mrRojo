@@ -18,9 +18,7 @@ const totalEnAriary = computed(() => formatAriary(total.value));
     </ion-header>
 
     <ion-content class="ion-padding">
-      <div v-if="lignes.lenght === 0">
-        <ion-text color="medium">Votre panier est vide</ion-text>
-      </div>
+        <ion-text v-if="panierLignes.length === 0" color="danger" >Votre panier est vide</ion-text>
     </ion-content>
   </ion-page>
 </template>
