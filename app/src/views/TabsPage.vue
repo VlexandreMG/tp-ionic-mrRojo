@@ -13,8 +13,8 @@
         <ion-tab-button tab="panier" href="/tabs/panier">
           <ion-icon :icon="cartOutline" />
           <ion-label>
+            Panier</ion-label>
             <ion-badge v-if="nombreArticles > 0" color="primary">{{ nombreArticles }}</ion-badge>
-          Panier</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="commandes" href="/tabs/commandes">

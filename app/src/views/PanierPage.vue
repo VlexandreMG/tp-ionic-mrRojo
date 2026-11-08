@@ -1,5 +1,5 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel} from '@ionic/vue';
 import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
 import { computed} from 'vue';
