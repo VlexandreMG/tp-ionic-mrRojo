@@ -60,8 +60,8 @@ onMounted(charger);
                 <p>{{ plat.description }}</p>
                 <p>{{ plat.prix }}</p>
             
-            <ion-button :disabled="!plat.disponible"
-            @click.stop.prevent="addInBasket(plat)">
+            <ion-button expand="block" :disabled="!plat.disponible"
+            @click="addInBasket(plat)">
             Ajouter au panier
             </ion-button>
 
