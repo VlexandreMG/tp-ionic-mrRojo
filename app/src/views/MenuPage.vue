@@ -63,6 +63,9 @@ import {
   onIonViewWillEnter, onIonViewDidLeave
 } from '@ionic/vue';
 import api from '@/services/api';
+import {addCircleOutline} from 'ionicons/icons';
+import {usePanier} from '@/composables/usePanier';
+
 
 const plats = ref([]);
 const categories = ref([]);
