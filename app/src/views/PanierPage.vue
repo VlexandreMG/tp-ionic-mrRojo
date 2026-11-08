@@ -36,6 +36,9 @@ const totalEnAriary = computed(() => formatAriary(total.value));
             <ion-button slot="end" fill="clear" @click="changerQuantite(ligne.plat.id , +1)">
               <ion-icon slot="icon-only" :icon="addCircleOutline"></ion-icon>
             </ion-button>
+            <ion-label>
+              <h2>Total : {{ totalEnAriary }}</h2>
+            </ion-label>
           </ion-item>
         </ion-list>
     </ion-content>
