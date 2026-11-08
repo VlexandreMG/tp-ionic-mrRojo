@@ -30,4 +30,6 @@ export function usePanier() {
         lignes.value.reduce((somme,l) => somme + l.quantite, 0));
     const total = computed(() => 
         lignes.value.reduce((somme,l) => somme + Number(l.plat.prix) * l.quantite,0));
+
+    return {lignes, ajouter, changerQuantite, vider, nombreArticles, total};
 }
