@@ -3,7 +3,7 @@ import {ref , onMounted} from 'vue';
 import api from '@/services/api';
 import {
     IonHeader , IonPage , IonButtons , IonBackButton , IonCard , IonCardHeader ,
-    IonCardContent , IonCardTitle , IonCardSubtitle , IonText
+    IonCardContent , IonCardTitle , IonCardSubtitle , IonText , IonButton , useIonRouter
 } from '@ionic/vue'
 import { useRoute } from 'vue-router';
 import { usePanier } from '@/composables/usePanier';
@@ -14,6 +14,11 @@ const plat = ref("")
 const erreur = ref("")
 const route = useRoute();
 const id = route.params.id;
+
+async function addInBasket(plat) {
+    ajouter(plat);
+    ionRouter.back();
+}
 
 async function charger() {
     try {
@@ -54,6 +59,12 @@ onMounted(charger);
             <ion-card-content>
                 <p>{{ plat.description }}</p>
                 <p>{{ plat.prix }}</p>
+            
+            <ion-button :disabled="!plat.disponible"
+            @click.stop.prevent="addInBasket(plat)">
+            Ajouter au panier
+            </ion-button>
+
             </ion-card-content>
         </ion-card>
     </ion-page>
