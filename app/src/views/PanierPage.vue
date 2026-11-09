@@ -8,6 +8,9 @@ import {addCircleOutline , removeCircleOutline} from 'ionicons/icons';
 const { lignes , vider , total , changerQuantite } = usePanier();
 const panierLignes = lignes;
 const totalEnAriary = computed(() => formatAriary(total.value));
+const table = ref('');
+const erreurTable = ref('');
+const envoi = ref(false);
 </script>
 
 <template>
