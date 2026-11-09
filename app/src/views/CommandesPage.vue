@@ -1,5 +1,7 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem , IonLabel , IonButton, toastController , onIonViewWillEnter, IonBadge} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, 
+  IonText , IonList ,IonItem , IonLabel , IonButton, toastController , onIonViewWillEnter, IonBadge
+, IonRefresher , IonRefresherContent} from '@ionic/vue';
 import {ref} from 'vue';
 import api from '@/services/api';
 import { formatDate , formatAriary } from '../utils/format';
@@ -7,6 +9,11 @@ import {usePanier} from '@/composables/usePanier';
 
 const {total} = usePanier();
 const commandes = ref([]);
+
+async function rafraichir(event) {
+  await charger();
+  event.target.complete();
+}
 
 function detailLignes(cmd) {
   return cmd.lignes.map(l => `${l.quantite} x ${l.nom}`).join(', ');
