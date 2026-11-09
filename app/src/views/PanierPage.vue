@@ -1,10 +1,10 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon, IonInput} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon, IonInput, alertController} from '@ionic/vue';
 import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
-import { computed} from 'vue';
+import {ref, computed} from 'vue';
 import {addCircleOutline , removeCircleOutline} from 'ionicons/icons';
-import {ref} from 'vue';
+import { alertController } from '@ionic/vue';
 
 const { lignes , vider , total , changerQuantite } = usePanier();
 const panierLignes = lignes;
@@ -12,6 +12,23 @@ const totalEnAriary = computed(() => formatAriary(total.value));
 const table = ref('');
 const erreurTable = ref('');
 const envoi = ref(false);
+
+async function confirmer() {
+    const alerte = await alertController.create({
+    header: 'Confirmer la commande',
+    message: `Table ${table.value} : ${formatAriary(total.value)}`,  
+    buttons: [
+      {text: 'Annuler', role: 'cancel'},
+      {text: 'Envoyer', role: 'confirm'},
+    ],
+
+  });
+  // Affiche l'alert
+  await alerte.present();
+ // Quand l'alert se ferme 
+  const { role } = await alerte.onDidDismiss();
+  if (role === 'confirm') await envoyer();
+}
 </script>
 
 <template>
