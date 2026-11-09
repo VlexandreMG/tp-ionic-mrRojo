@@ -13,7 +13,15 @@ const erreurTable = ref('');
 const envoi = ref(false);
 
 async function envoyer() {
-  console.log("envoi XDD")
+  // Afficher le chargement 
+
+  try {
+    // Etapes 4.2 et 4.3
+  } catch (error) {
+    // Etapes 4.4
+  } finally {
+    // Fermer le chargement 
+  }
 }
 
 async function confirmer() {
