@@ -11,7 +11,6 @@ const panierLignes = lignes;
 const totalEnAriary = computed(() => formatAriary(total.value));
 const table = ref('');
 const erreurTable = ref('');
-const envoi = ref(false);
 
 async function envoyer() {
   // Afficher le chargement 
@@ -22,7 +21,6 @@ async function envoyer() {
     const ligneApi = lignes.value.map((l) => ({plat_id: l.plat.id, quantite:l.quantite}));
     const commande = {table: Number(table.value), lignes: ligneApi};
     const resultat = await api.creerCommande(commande);
-
     // Avec succès 
     vider();
     table.value = '';
@@ -101,7 +99,7 @@ async function confirmer() {
           </ion-item>
           <ion-input v-model="table" type="number" label="Numéro de table"
           label-placement="floating" fill="outline" :class="{'ion-invalid ion-touched': erreurTable}" :error-text="erreurTable"/>
-          <ion-button expand="block" class="ion-margin-top" :disabled="envoi" @click="confirmer">
+          <ion-button expand="block" class="ion-margin-top" @click="confirmer">
             Envoyer la commande
           </ion-button>
         </ion-list>
