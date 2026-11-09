@@ -1,5 +1,5 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon, IonInput} from '@ionic/vue';
 import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
 import { computed} from 'vue';
@@ -45,7 +45,10 @@ const totalEnAriary = computed(() => formatAriary(total.value));
           </ion-item>
         </ion-list>
 
-        
+      <ion-input v-model="table" type="number" label="Numéro de table"
+      label-placement="floating" fill="outline">
+
+      </ion-input>
     </ion-content>
   </ion-page>
 </template>
