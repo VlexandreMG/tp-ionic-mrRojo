@@ -2,8 +2,13 @@
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem , IonLabel , IonButton, toastController , onIonViewWillEnter} from '@ionic/vue';
 import {ref} from 'vue';
 import api from '@/services/api';
+import { formatDate } from '../utils/format';
 
 const commandes = ref([]);
+
+function detailLignes(cmd) {
+  return cmd.lignes.map(l => `${l.quantite} x ${l.nom}`).join(', ');
+}
 
 async function charger() {
   try {
@@ -40,6 +45,10 @@ onIonViewWillEnter(charger);
           <ion-label>
             <h2> N°{{ cmd.id }}</h2>
             <p>Table N°{{ cmd.table }}</p>
+            <p>Date : {{ formatDate(cmd.date) }}</p>
+          </ion-label>
+          <ion-label>
+            <h2>{{ detailLignes(cmd) }}</h2>
           </ion-label>
         </ion-item>
       </ion-list>
