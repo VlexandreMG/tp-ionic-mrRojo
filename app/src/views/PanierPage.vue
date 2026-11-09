@@ -4,7 +4,6 @@ import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
 import {ref, computed} from 'vue';
 import {addCircleOutline , removeCircleOutline} from 'ionicons/icons';
-import { alertController } from '@ionic/vue';
 
 const { lignes , vider , total , changerQuantite } = usePanier();
 const panierLignes = lignes;
@@ -12,6 +11,10 @@ const totalEnAriary = computed(() => formatAriary(total.value));
 const table = ref('');
 const erreurTable = ref('');
 const envoi = ref(false);
+
+async function envoyer() {
+  console.log("envoi XDD")
+}
 
 async function confirmer() {
     const alerte = await alertController.create({
