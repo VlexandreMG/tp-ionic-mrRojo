@@ -14,12 +14,10 @@ const envoi = ref(false);
 
 async function envoyer() {
   // Afficher le chargement 
-
+  const loading = await loadingController.create({ message: 'Envoi de la commande…' });
+  await loading.present();
   try {
     // Etapes 4.2 et 4.3
-    const loading = await loadingController.create({ message: 'Envoi de la commande…' });
-    await loading.present();
-
   } catch (error) {
     // Etapes 4.4
   } finally {
