@@ -42,4 +42,12 @@ export default {
   getOnePlat(id) {
     return requete(`/plats/${id}`)
   },
+
+  creerCommande() {
+
+  },
+
+  getCommandes() {
+    
+  },
 };
