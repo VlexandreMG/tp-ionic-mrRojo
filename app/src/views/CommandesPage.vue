@@ -1,5 +1,5 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem , IonLabel , IonButton, toastController , onIonViewWillEnter} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem , IonLabel , IonButton, toastController , onIonViewWillEnter, IonBadge} from '@ionic/vue';
 import {ref} from 'vue';
 import api from '@/services/api';
 import { formatDate , formatAriary } from '../utils/format';
@@ -51,8 +51,9 @@ onIonViewWillEnter(charger);
           </ion-label>
           <ion-label>
             <h2>{{ detailLignes(cmd) }}</h2>
+            <h3>Total : {{ formatAriary(cmd.total) }}</h3>
           </ion-label>
-          <h3>Total : {{ formatAriary(cmd.total) }}</h3>
+          <ion-badge slot="end" color="warning">{{ cmd.statut }}</ion-badge>
         </ion-item>
       </ion-list>
     </ion-content>
