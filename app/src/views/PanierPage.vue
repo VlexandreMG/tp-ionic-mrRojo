@@ -4,6 +4,7 @@ import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
 import { computed} from 'vue';
 import {addCircleOutline , removeCircleOutline} from 'ionicons/icons';
+import {ref} from 'vue';
 
 const { lignes , vider , total , changerQuantite } = usePanier();
 const panierLignes = lignes;
