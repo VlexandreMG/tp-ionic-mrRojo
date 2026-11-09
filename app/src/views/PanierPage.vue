@@ -35,6 +35,12 @@ async function envoyer() {
     // Etapes 4.4
     if (error.statut === 422 && error.details.table) {
       erreurTable.value = error.details.table;
+    } else {
+      const toast = await toastController.create({
+        message:`${error.message}`,
+        duration: 1500, color: 'danger',
+      });
+      await toast.present();
     }
   } finally {
     // Fermer le chargement 
