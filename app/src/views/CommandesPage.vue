@@ -2,8 +2,10 @@
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem , IonLabel , IonButton, toastController , onIonViewWillEnter} from '@ionic/vue';
 import {ref} from 'vue';
 import api from '@/services/api';
-import { formatDate } from '../utils/format';
+import { formatDate , formatAriary } from '../utils/format';
+import {usePanier} from '@/composables/usePanier';
 
+const {total} = usePanier();
 const commandes = ref([]);
 
 function detailLignes(cmd) {
@@ -50,6 +52,7 @@ onIonViewWillEnter(charger);
           <ion-label>
             <h2>{{ detailLignes(cmd) }}</h2>
           </ion-label>
+          <h3>Total : {{ formatAriary(cmd.total) }}</h3>
         </ion-item>
       </ion-list>
     </ion-content>
