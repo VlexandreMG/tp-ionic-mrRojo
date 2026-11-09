@@ -18,6 +18,9 @@ async function envoyer() {
   await loading.present();
   try {
     // Etapes 4.2 et 4.3
+    const ligneApi = lignes.value.map((l) => ({plat_id: l.plat.id, quantite:l.quantite}));
+    const commande = {table: Number(table.value), lignes: ligneApi};
+    console.log(commande);
   } catch (error) {
     // Etapes 4.4
   } finally {
