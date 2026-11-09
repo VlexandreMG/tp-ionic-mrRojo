@@ -38,7 +38,8 @@ onIonViewWillEnter(charger);
       <ion-list v-else>
         <ion-item v-for="cmd in commandes" :key="cmd.id">
           <ion-label>
-            <h2>{{ cmd.lignes[0].plat_id }}</h2>
+            <h2> N°{{ cmd.id }}</h2>
+            <p>Table N°{{ cmd.table }}</p>
           </ion-label>
         </ion-item>
       </ion-list>
