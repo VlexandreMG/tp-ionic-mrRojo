@@ -33,6 +33,9 @@ async function envoyer() {
     toast.present();
   } catch (error) {
     // Etapes 4.4
+    if (error.statut === 422 && error.details.table) {
+      erreurTable.value = error.details.table;
+    }
   } finally {
     // Fermer le chargement 
     await loading.dismiss();

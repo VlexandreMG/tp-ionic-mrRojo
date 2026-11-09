@@ -43,7 +43,7 @@ export default {
     return requete(`/plats/${id}`)
   },
 
-  creerCommande(commandes) {
+  creerCommande(commande) {
     return requete('/commandes', { method: 'POST', body: JSON.stringify(commande) });
   },
 
