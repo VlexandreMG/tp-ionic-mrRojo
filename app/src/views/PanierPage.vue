@@ -1,9 +1,10 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon, IonInput, alertController, loadingController} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon, IonInput, alertController, loadingController, toastController} from '@ionic/vue';
 import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
 import {ref, computed} from 'vue';
 import {addCircleOutline , removeCircleOutline} from 'ionicons/icons';
+import api from '@/services/api'
 
 const { lignes , vider , total , changerQuantite } = usePanier();
 const panierLignes = lignes;
@@ -20,7 +21,16 @@ async function envoyer() {
     // Etapes 4.2 et 4.3
     const ligneApi = lignes.value.map((l) => ({plat_id: l.plat.id, quantite:l.quantite}));
     const commande = {table: Number(table.value), lignes: ligneApi};
-    console.log(commande);
+    const resultat = await api.creerCommande(commande);
+
+    // Avec succès 
+    vider();
+    table.value = '';
+    const toast = await toastController.create({
+    message: `Commande n°${resultat.id} est envoyée`,
+    duration: 1500, position: 'top', color: 'success',
+    });
+    toast.present();
   } catch (error) {
     // Etapes 4.4
   } finally {
