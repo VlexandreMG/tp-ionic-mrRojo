@@ -1,5 +1,5 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon, IonInput, alertController} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon, IonInput, alertController, loadingController} from '@ionic/vue';
 import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
 import {ref, computed} from 'vue';
@@ -17,10 +17,14 @@ async function envoyer() {
 
   try {
     // Etapes 4.2 et 4.3
+    const loading = await loadingController.create({ message: 'Envoi de la commande…' });
+    await loading.present();
+
   } catch (error) {
     // Etapes 4.4
   } finally {
     // Fermer le chargement 
+    await loading.dismiss();
   }
 }
 
