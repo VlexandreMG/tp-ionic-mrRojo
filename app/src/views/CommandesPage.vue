@@ -1,10 +1,9 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem , IonLabel , IonButton} from '@ionic/vue';
 import {ref} from 'vue';
 import api from '@/services/api';
 
 const commandes = ref([]);
-const panierLignes = lignes;
 
 async function charger() {
   try {
@@ -36,7 +35,10 @@ async function charger() {
 
       <ion-list v-else>
         <ion-item v-for="cmd in commandes" :key="cmd.id">
-
+          <ion-label>
+            <h2>{{ cmd.lignes.id }}</h2>
+            <p>{{ cmd.lignes.table }}</p>
+          </ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
