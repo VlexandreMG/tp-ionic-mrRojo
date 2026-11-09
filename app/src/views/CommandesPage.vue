@@ -1,3 +1,20 @@
+<script setup>
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText } from '@ionic/vue';
+import {ref} from 'vue';
+import api from '@/services/api';
+
+const commandes = ref([]);
+
+async function charger() {
+  try {
+    commandes.value = await api.getCommandes();
+  } catch (error) {
+    
+  }
+}
+</script>
+
+
 <template>
   <ion-page>
     <ion-header>
@@ -13,7 +30,3 @@
     </ion-content>
   </ion-page>
 </template>
-
-<script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText } from '@ionic/vue';
-</script>
