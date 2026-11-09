@@ -44,6 +44,9 @@ onIonViewWillEnter(charger);
     </ion-header>
 
     <ion-content class="ion-padding">
+      <ion-refresher slot="fixed" @ion-refresh="rafraichir">
+        <ion-refresher-content />
+      </ion-refresher>
       <div v-if="commandes.length === 0">
           <ion-text color="danger" >Vous n'avez pas fait votre commande</ion-text>
           <ion-button router-link="/tabs/menu/" color="danger">Allez commandez dans le menu</ion-button>
