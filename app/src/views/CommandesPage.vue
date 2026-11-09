@@ -1,5 +1,5 @@
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem , IonLabel , IonButton} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonList ,IonItem , IonLabel , IonButton, toastController , onIonViewWillEnter} from '@ionic/vue';
 import {ref} from 'vue';
 import api from '@/services/api';
 
@@ -16,6 +16,8 @@ async function charger() {
       await toast.present();
   }
 }
+
+onIonViewWillEnter(charger);
 </script>
 
 
@@ -36,8 +38,7 @@ async function charger() {
       <ion-list v-else>
         <ion-item v-for="cmd in commandes" :key="cmd.id">
           <ion-label>
-            <h2>{{ cmd.lignes.id }}</h2>
-            <p>{{ cmd.lignes.table }}</p>
+            <h2>{{ cmd.lignes[0].plat_id }}</h2>
           </ion-label>
         </ion-item>
       </ion-list>
