@@ -27,8 +27,8 @@ async function envoyer() {
     vider();
     table.value = '';
     const toast = await toastController.create({
-    message: `Commande n°${resultat.id} est envoyée`,
-    duration: 1500, position: 'top', color: 'success',
+      message: `Commande n°${resultat.id} est envoyée`,
+      duration: 1500, position: 'top', color: 'success',
     });
     toast.present();
   } catch (error) {
