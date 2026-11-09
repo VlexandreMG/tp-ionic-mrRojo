@@ -46,8 +46,10 @@ const totalEnAriary = computed(() => formatAriary(total.value));
         </ion-list>
 
       <ion-input v-model="table" type="number" label="Numéro de table"
-      label-placement="floating" fill="outline">
-
+      label-placement="floating" fill="outline" :class="{'ion-invalid ion-touched': erreurTable}" :error-text="erreurTable">
+        <ion-button expand="block" class="ion-margin-top" :disabled="envoi" @click="confirmer">
+          Envoyer la commande
+        </ion-button>
       </ion-input>
     </ion-content>
   </ion-page>
