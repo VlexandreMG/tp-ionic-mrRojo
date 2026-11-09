@@ -9,7 +9,11 @@ async function charger() {
   try {
     commandes.value = await api.getCommandes();
   } catch (error) {
-    
+    const toast = await toastController.create({
+        message:`${error.message}`,
+        duration: 1500, color: 'danger',
+      });
+      await toast.present();
   }
 }
 </script>
