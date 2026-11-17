@@ -33,14 +33,14 @@ export default {
 
   getPlats(categorieId) {
     if (categorieId != null) {
-      return requete(`/libelle?categorie=${categorieId}`)
+      return requete(`/plats?categorie=${categorieId}`)
     } else {
-      return requete('/libelle')
+      return requete('/plats')
     }
   },
 
   getOnePlat(id) {
-    return requete(`/libelle/${id}`)
+    return requete(`/plats/${id}`)
   },
 
   creerCommande(commande) {
