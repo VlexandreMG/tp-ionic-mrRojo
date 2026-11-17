@@ -56,6 +56,7 @@ onMounted(() => {
         </div>
 
         <ion-card v-if="plat">
+            <p v-if="riz">Avec du riz : {{ formatAriary(plat.prix + riz.prix) }}</p>
             <ion-card-header>
                 <ion-card-title>{{ plat.nom }}</ion-card-title>
                 <ion-card-subtitle>{{ plat.categorie.nom }}</ion-card-subtitle>
