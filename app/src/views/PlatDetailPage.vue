@@ -12,6 +12,7 @@ const { ajouter } = usePanier();
 const ionRouter = useIonRouter();
 const plat = ref("")
 const erreur = ref("")
+const riz = ref(null);
 const route = useRoute();
 const id = route.params.id;
 
@@ -32,7 +33,11 @@ async function charger() {
     }
 }
 
-onMounted(charger);
+onMounted(() => {
+    charger();
+    riz.value = await api.getPlat(7);
+})
+
 
 </script>
 
