@@ -48,7 +48,7 @@ async function charger() {
       message.value = "Ne rien afficher XD"
       plats.value = []
     } else {
-      plats.value = await api.getPlats(categorieChoisie.value);
+      plats.value =  api.getPlats(categorieChoisie.value);
     }
   } catch (e) {
     erreur.value = "Impossible de joindre l'API. Est-elle lancée ?";
