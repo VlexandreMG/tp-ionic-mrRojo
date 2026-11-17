@@ -22,7 +22,7 @@ const message = ref("")
 async function ajouterAuPanier(plat) {
   ajouter(plat);
   const toast = await toastController.create({
-  message: `${plat.libelle} ajouté au panier`,
+  message: `${plat.nom} ajouté au panier`,
   duration: 1500, position: 'top', color: 'secondary',
 });
 await toast.present();
@@ -30,7 +30,7 @@ await toast.present();
 
 const platsFiltre = computed (() => {
     const listePlats = plats.value
-    const choosen = listePlats.filter((lp) => lp.libelle.toLowerCase().includes(recherche.value.toLowerCase()))
+    const choosen = listePlats.filter((lp) => lp.nom.toLowerCase().includes(recherche.value.toLowerCase()))
     return choosen
 })
 
@@ -48,7 +48,7 @@ async function charger() {
       message.value = "Ne rien afficher XD"
       plats.value = []
     } else {
-      plats.value =  api.getPlats(categorieChoisie.value);
+      plats.value = await api.getPlats(categorieChoisie.value);
     }
   } catch (e) {
     erreur.value = "Impossible de joindre l'API. Est-elle lancée ?";
@@ -116,7 +116,7 @@ onIonViewDidLeave(() => console.log('MENU ionViewDidLeave'));
       <ion-list v-else>
         <ion-item v-for="plat in platsFiltre" :key="plat.id" :router-link="`/tabs/menu/${plat.id}`">
           <ion-label>
-            <h2>{{ plat.libelle }}</h2>
+            <h2>{{ plat.nom }}</h2>
             <p>{{ plat.categorie.nom }}</p>
             <p>{{ plat.description }}</p>
             <ion-text color="primary"><strong>{{ plat.prix }}</strong></ion-text><ion-badge v-if="!plat.disponnible" color="medium">Epuise</ion-badge>

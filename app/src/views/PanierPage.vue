@@ -84,7 +84,7 @@ async function confirmer() {
         <ion-list v-else>
           <ion-item v-for="ligne in lignes" :key="ligne.plat.id">
             <ion-label>
-              <h2>{{ ligne.plat.libelle }}</h2>
+              <h2>{{ ligne.plat.nom }}</h2>
               <p>{{ formatAriary(ligne.plat.prix) }} × {{ ligne.quantite }}</p>
             </ion-label>
             <ion-button slot="end" fill="clear" @click="changerQuantite(ligne.plat.id , -1)">
