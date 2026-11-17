@@ -7,6 +7,8 @@ import {
 } from '@ionic/vue'
 import { useRoute } from 'vue-router';
 import { usePanier } from '@/composables/usePanier';
+import { formatAriary } from '../utils/format';
+
 
 const { ajouter } = usePanier();
 const ionRouter = useIonRouter();
