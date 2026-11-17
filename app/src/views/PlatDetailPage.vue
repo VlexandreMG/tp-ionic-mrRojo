@@ -33,9 +33,9 @@ async function charger() {
     }
 }
 
-onMounted(() => {
+onMounted(async () => {
     charger();
-    riz.value = await api.getPlat(7);
+    riz.value = await api.getOnePlat(7);
 })
 
 
