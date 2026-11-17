@@ -12,7 +12,7 @@
 const http = require('http');
 const { URL } = require('url');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const LATENCE_MS = Number(process.env.LATENCE_MS || 300); // simule un réseau mobile
 
 // Fiche 05 : la « version 2 » de l'API renomme le champ `nom` des plats en `libelle`.

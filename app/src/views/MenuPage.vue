@@ -119,7 +119,7 @@ onIonViewDidLeave(() => console.log('MENU ionViewDidLeave'));
             <h2>{{ plat.nom }}</h2>
             <p>{{ plat.categorie.nom }}</p>
             <p>{{ plat.description }}</p>
-            <ion-text color="primary"><strong>{{ plat.prix }}</strong></ion-text><ion-badge v-if="!plat.disponible" color="medium">Epuise</ion-badge>
+            <ion-text color="primary"><strong>{{ plat.prix }}</strong></ion-text><ion-badge v-if="!plat.disponnible" color="medium">Epuise</ion-badge>
           </ion-label>
           <ion-button slot="end" fill="clear" :disabled="!plat.disponible"
             @click.stop.prevent="ajouterAuPanier(plat)">
