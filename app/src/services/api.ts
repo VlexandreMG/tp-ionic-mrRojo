@@ -5,26 +5,34 @@
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 import type { Categorie, Commande, NouvelleCommande, Plat } from '@/types/gargote';
 
+export class ErreurApi extends Error {
+  constructor(
+    message: string,
+    public statut: number,
+    public details: Record<string, string> = {},
+  ) {
+    super(message);
+  }
+}
+
 /**
  * Envoie une requête et renvoie le JSON de la réponse.
  * En cas de code HTTP d'erreur (4xx, 5xx), lève une Error qui contient
  * le statut et le corps de la réponse (message, erreurs...).
  */
-async function requete(chemin, options = {}) {
-  const reponse = await fetch(BASE_URL + chemin, {
+async function requete<T>(chemin: string, options: RequestInit = {}): Promise<T> {
+  // ... même corps qu'avant, mais :
+    const reponse = await fetch(BASE_URL + chemin, {
     headers: { 'Content-Type': 'application/json' },
     ...options,
-  });
+    });
 
-  const donnees = reponse.status === 204 ? null : await reponse.json();
+    const donnees = reponse.status === 204 ? null : await reponse.json();
 
-  if (!reponse.ok) {
-    const erreur = new Error(donnees?.message ?? `Erreur HTTP ${reponse.status}`);
-    erreur.statut = reponse.status;
-    erreur.details = donnees?.erreurs ?? {};
-    throw erreur;
-  }
-  return donnees;
+    if (!reponse.ok) {
+      throw new ErreurApi(donnees?.message ?? `Erreur HTTP ${reponse.status}`, reponse.status, donnees?.erreurs ?? {});
+    }
+      return donnees as T;
 }
 
 export default {
