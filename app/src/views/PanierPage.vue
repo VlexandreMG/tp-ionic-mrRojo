@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonText , IonButton , IonList , IonItem, IonLabel , IonIcon, IonInput, alertController, loadingController, toastController} from '@ionic/vue';
 import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';

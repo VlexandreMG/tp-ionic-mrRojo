@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, 
   IonText , IonList ,IonItem , IonLabel , IonButton, toastController , onIonViewWillEnter, IonBadge
 , IonRefresher , IonRefresherContent} from '@ionic/vue';

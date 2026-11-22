@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted , onUnmounted , computed} from 'vue';
 import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
