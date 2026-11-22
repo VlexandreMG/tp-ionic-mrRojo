@@ -32,3 +32,8 @@ export interface Commande {
   total: string;
   lignes: LigneCommande[];
 }
+
+export interface LignePanier {
+  plat: Plat;
+  quantite: number;
+}
