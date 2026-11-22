@@ -13,3 +13,5 @@ export interface Plat {
   disponible: boolean;
   categorie: Categorie | null;
 }
+
+export type StatutCommande = 'en_attente' | 'valider'
