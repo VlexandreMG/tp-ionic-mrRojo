@@ -37,3 +37,8 @@ export interface LignePanier {
   plat: Plat;
   quantite: number;
 }
+
+export interface NouvelleCommande {
+  table: Number;
+  lignes: {plat_id:number ; quantite:number}[];
+}

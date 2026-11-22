@@ -3,6 +3,7 @@
  * Les pages n'utilisent jamais fetch() directement.
  */
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+import type { Categorie, Commande, NouvelleCommande, Plat } from '@/types/gargote';
 
 /**
  * Envoie une requête et renvoie le JSON de la réponse.
