@@ -6,16 +6,18 @@ import {ref} from 'vue';
 import api from '@/services/api';
 import { formatDate , formatAriary } from '../utils/format';
 import {usePanier} from '@/composables/usePanier';
+import type {Commande} from '@/types/gargote';
+import type { RefresherCustomEvent } from '@ionic/vue';
 
 const {total} = usePanier();
-const commandes = ref([]);
+const commandes = ref<Commande[]>([]);
 
-async function rafraichir(event) {
+async function rafraichir(event: RefresherCustomEvent) {
   await charger();
   event.target.complete();
 }
 
-function detailLignes(cmd) {
+function detailLignes(cmd: Commande) {
   return cmd.lignes.map(l => `${l.quantite} x ${l.nom}`).join(', ');
 }
 
