@@ -40,7 +40,7 @@ export default {
     return requete('/categories');
   },
 
-  getPlats(categorieId) {
+  getPlats(categorieId?:number | null): Promise<Plat[]> {
     if (categorieId != null) {
       return requete(`/plats?categorie=${categorieId}`)
     } else {
@@ -48,11 +48,11 @@ export default {
     }
   },
 
-  getOnePlat(id) {
+  getOnePlat(id: number | null): Promise<Plat> {
     return requete(`/plats/${id}`)
   },
 
-  creerCommande(commande) {
+  creerCommande(commande: Commande): Promise<Commande> {
     return requete('/commandes', { method: 'POST', body: JSON.stringify(commande) });
   },
 
