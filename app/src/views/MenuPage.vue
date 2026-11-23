@@ -119,12 +119,12 @@ onIonViewDidLeave(() => console.log('MENU ionViewDidLeave'));
         <ion-item v-for="plat in platsFiltre" :key="plat.id" :router-link="`/tabs/menu/${plat.id}`">
           <ion-label>
             <h2>{{ plat.nom }}</h2>
-            <p>{{ plat.categorie.nom }}</p>
+            <p>{{ plat.categorie?.nom }}</p>
             <p>{{ plat.description }}</p>
-            <ion-text color="primary"><strong>{{ plat.prix }}</strong></ion-text><ion-badge v-if="!plat.disponnible" color="medium">Epuise</ion-badge>
+            <ion-text color="primary"><strong>{{ plat.prix }}</strong></ion-text><ion-badge v-if="!plat.disponible" color="medium">Epuise</ion-badge>
           </ion-label>
           <ion-button slot="end" fill="clear" :disabled="!plat.disponible"
-            @click.stop.prevent="ajouterAuPanier(plat.id)">
+            @click.stop.prevent="ajouterAuPanier(plat)">
             <ion-icon slot="icon-only" :icon="addCircleOutline" />
           </ion-button>
         </ion-item>
