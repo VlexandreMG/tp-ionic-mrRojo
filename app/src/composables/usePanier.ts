@@ -13,7 +13,7 @@ export function usePanier() {
         }
     }
 
-    function changerQuantite(platId , delta) {
+    function changerQuantite(platId: number , delta: number) {
         const line = lignes.value.find(l => l.plat.id === platId);
         if (line !== undefined) {
             line.quantite += delta;
