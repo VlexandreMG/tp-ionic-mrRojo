@@ -4,7 +4,8 @@ import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
 import {ref, computed} from 'vue';
 import {addCircleOutline , removeCircleOutline} from 'ionicons/icons';
-import api from '@/services/api'
+import api, {ErreurApi} from '@/services/api'
+import type {NouvelleCommande} from '@/types/gargote';
 
 const { lignes , vider , total , changerQuantite } = usePanier();
 const panierLignes = lignes;
@@ -25,19 +26,20 @@ async function envoyer() {
     vider();
     table.value = '';
     const toast = await toastController.create({
-      message: `Commande n°${resultat.id} est envoyée`,
+      message: `Commande n°${resultat.table} est envoyée`,
       duration: 1500, position: 'top', color: 'success',
     });
     toast.present();
   } catch (error) {
     // Etapes 4.4
-    if (error.statut === 422 && error.details.table) {
+    if (error instanceof ErreurApi && error.statut === 422 && error.details.table) {
       erreurTable.value = error.details.table;
     } else {
+       const message = error instanceof Error ? error.message : 'Erreur inconnue';
       const toast = await toastController.create({
-        message:`${error.message}`,
+        message,
         duration: 1500, color: 'danger',
-      });
+    });
       await toast.present();
     }
   } finally {
@@ -85,7 +87,7 @@ async function confirmer() {
           <ion-item v-for="ligne in lignes" :key="ligne.plat.id">
             <ion-label>
               <h2>{{ ligne.plat.nom }}</h2>
-              <p>{{ formatAriary(ligne.plat.prix) }} × {{ ligne.quantite }}</p>
+              <p>{{ formatAriary(Number(ligne.plat.prix)) }} × {{ ligne.quantite }}</p>
             </ion-label>
             <ion-button slot="end" fill="clear" @click="changerQuantite(ligne.plat.id , -1)">
               <ion-icon slot="icon-only" :icon="removeCircleOutline"></ion-icon>
