@@ -5,7 +5,6 @@ import { formatAriary } from '../utils/format';
 import {ref, computed} from 'vue';
 import {addCircleOutline , removeCircleOutline} from 'ionicons/icons';
 import api, {ErreurApi} from '@/services/api'
-import type {NouvelleCommande} from '@/types/gargote';
 
 const { lignes , vider , total , changerQuantite } = usePanier();
 const panierLignes = lignes;

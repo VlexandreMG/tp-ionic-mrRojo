@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref , onMounted} from 'vue';
-import api from '@/services/api';
+import api, {ErreurApi} from '@/services/api';
 import {
     IonHeader , IonPage , IonButtons , IonBackButton , IonCard , IonCardHeader ,
     IonCardContent , IonCardTitle , IonCardSubtitle , IonText , IonButton , useIonRouter
@@ -8,26 +8,27 @@ import {
 import { useRoute } from 'vue-router';
 import { usePanier } from '@/composables/usePanier';
 import { formatAriary } from '../utils/format';
+import type {Plat} from '@/types/gargote';
 
 
 const { ajouter } = usePanier();
 const ionRouter = useIonRouter();
-const plat = ref("")
+const plat = ref<Plat>();
 const erreur = ref("")
-const riz = ref(null);
+const riz = ref<Plat>();
 const route = useRoute();
 const id = route.params.id;
 
-async function addInBasket(plat) {
+async function addInBasket(plat: Plat) {
     ajouter(plat);
     ionRouter.back();
 }
 
 async function charger() {
     try {
-        plat.value = await api.getOnePlat(id);
+        plat.value = await api.getOnePlat(Number(id));
     } catch (error) {
-        if (error.statut === 404) {
+        if (error instanceof ErreurApi && error.statut === 404) {
             erreur.value = "Ce plat n'existe pas"
         } else {
             erreur.value = "Impossible de joindre l'API"
@@ -58,10 +59,10 @@ onMounted(async () => {
         </div>
 
         <ion-card v-if="plat">
-            <p v-if="riz">Avec du riz : {{ formatAriary(plat.prix + riz.prix) }}</p>
+            <p v-if="riz">Avec du riz : {{ formatAriary(Number(plat.prix + riz.prix)) }}</p>
             <ion-card-header>
                 <ion-card-title>{{ plat.nom }}</ion-card-title>
-                <ion-card-subtitle>{{ plat.categorie.nom }}</ion-card-subtitle>
+                <ion-card-subtitle>{{ plat.categorie?.nom }}</ion-card-subtitle>
             </ion-card-header>
 
             <ion-card-content>
