@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import TabsPage from '@/views/TabsPage.vue';
-import type { RouteRecordRaw } from 'vue-router
+import type { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[]  = [
   { path: '/', redirect: '/tabs/menu' },
