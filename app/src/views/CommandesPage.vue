@@ -25,8 +25,9 @@ async function charger() {
   try {
     commandes.value = await api.getCommandes();
   } catch (error) {
+    const message = error instanceof Error ? error.message : 'Erreur inconnue';
     const toast = await toastController.create({
-        message:`${error.message}`,
+        message,
         duration: 1500, color: 'danger',
       });
       await toast.present();
@@ -63,7 +64,7 @@ onIonViewWillEnter(charger);
           </ion-label>
           <ion-label>
             <h2>{{ detailLignes(cmd) }}</h2>
-            <h3>Total : {{ formatAriary(cmd.total) }}</h3>
+            <h3>Total : {{ formatAriary(Number(cmd.total)) }}</h3>
           </ion-label>
           <ion-badge slot="end" color="warning">{{ cmd.statut }}</ion-badge>
         </ion-item>

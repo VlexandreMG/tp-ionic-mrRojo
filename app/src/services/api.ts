@@ -56,7 +56,7 @@ export default {
     return requete('/commandes', { method: 'POST', body: JSON.stringify(commande) });
   },
 
-  getCommandes(): Promise<Commande> {
+  getCommandes(): Promise<Commande[]> {
     return requete('/commandes');
   },
 };
