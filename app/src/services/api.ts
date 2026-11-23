@@ -36,7 +36,7 @@ async function requete<T>(chemin: string, options: RequestInit = {}): Promise<T>
 }
 
 export default {
-  getCategories() {
+  getCategories(): Promise<Categorie> {
     return requete('/categories');
   },
 
@@ -56,7 +56,7 @@ export default {
     return requete('/commandes', { method: 'POST', body: JSON.stringify(commande) });
   },
 
-  getCommandes() {
+  getCommandes(): Promise<Commande> {
     return requete('/commandes');
   },
 };
