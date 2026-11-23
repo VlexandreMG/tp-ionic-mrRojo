@@ -50,7 +50,7 @@ async function charger() {
       message.value = "Ne rien afficher XD"
       plats.value = []
     } else {
-      plats.value = await api.getPlats(Number(categorieChoisie.value));
+      plats.value = api.getPlats(Number(categorieChoisie.value));
     }
   } catch (e) {
     erreur.value = "Impossible de joindre l'API. Est-elle lancée ?";
@@ -121,10 +121,10 @@ onIonViewDidLeave(() => console.log('MENU ionViewDidLeave'));
             <h2>{{ plat.nom }}</h2>
             <p>{{ plat.categorie?.nom }}</p>
             <p>{{ plat.description }}</p>
-            <ion-text color="primary"><strong>{{ plat.prix }}</strong></ion-text><ion-badge v-if="!plat.disponible" color="medium">Epuise</ion-badge>
+            <ion-text color="primary"><strong>{{ plat.prix }}</strong></ion-text><ion-badge v-if="!plat.disponnible" color="medium">Epuise</ion-badge>
           </ion-label>
           <ion-button slot="end" fill="clear" :disabled="!plat.disponible"
-            @click.stop.prevent="ajouterAuPanier(plat)">
+            @click.stop.prevent="ajouterAuPanier(plat.id)">
             <ion-icon slot="icon-only" :icon="addCircleOutline" />
           </ion-button>
         </ion-item>

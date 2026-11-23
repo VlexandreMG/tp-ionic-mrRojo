@@ -5,7 +5,7 @@ export interface Categorie {
 
 export interface Plat {
   id: number;
-  nom: string;
+  libelle: string;
   description: string;
   /** Montant envoyé par l'API sous forme de chaîne : "6000.00" */
   prix: string;
