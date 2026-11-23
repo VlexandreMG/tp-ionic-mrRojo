@@ -52,7 +52,7 @@ export default {
     return requete(`/plats/${id}`)
   },
 
-  creerCommande(commande: Commande): Promise<Commande> {
+  creerCommande(commande: NouvelleCommande): Promise<NouvelleCommande> {
     return requete('/commandes', { method: 'POST', body: JSON.stringify(commande) });
   },
 

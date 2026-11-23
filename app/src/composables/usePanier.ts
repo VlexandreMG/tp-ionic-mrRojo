@@ -1,9 +1,10 @@
 import {computed, ref} from 'vue';
+import type {Plat, LignePanier} from '@/types/gargote';
 
-const lignes = ref([]);
+const lignes = ref<LignePanier[]>([]);
 
 export function usePanier() {
-    function ajouter(plat) {
+    function ajouter(plat: Plat): void {
         const ligne = lignes.value.find(l => l.plat.id === plat.id);
         if (ligne !== undefined) {
             ligne.quantite++;
