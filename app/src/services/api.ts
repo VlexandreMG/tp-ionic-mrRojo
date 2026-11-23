@@ -36,7 +36,7 @@ async function requete<T>(chemin: string, options: RequestInit = {}): Promise<T>
 }
 
 export default {
-  getCategories(): Promise<Categorie> {
+  getCategories(): Promise<Categorie[]> {
     return requete('/categories');
   },
 

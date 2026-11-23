@@ -9,17 +9,19 @@ import {
 import api from '@/services/api';
 import {addCircleOutline} from 'ionicons/icons';
 import {usePanier} from '@/composables/usePanier';
+import type {Plat, Categorie} from '@/types/gargote';
+import type { RefresherCustomEvent } from '@ionic/vue';
 
 const {ajouter} = usePanier();
-const plats = ref([]);
-const categories = ref([]);
+const plats = ref<Plat[]>([]);
+const categories = ref<Categorie[]>([]);
 const chargement = ref(true);
-const erreur = ref(null);
+const erreur = ref<string | null>(null);
 const recherche = ref("");
 const categorieChoisie  = ref("Toutes");
 const message = ref("")
 
-async function ajouterAuPanier(plat) {
+async function ajouterAuPanier(plat: Plat) {
   ajouter(plat);
   const toast = await toastController.create({
   message: `${plat.nom} ajouté au panier`,
@@ -34,7 +36,7 @@ const platsFiltre = computed (() => {
     return choosen
 })
 
-async function rafraichir(event) {
+async function rafraichir(event: RefresherCustomEvent) {
   await charger();
   event.target.complete(); // arrête l'animation
 }
@@ -48,7 +50,7 @@ async function charger() {
       message.value = "Ne rien afficher XD"
       plats.value = []
     } else {
-      plats.value = await api.getPlats(categorieChoisie.value);
+      plats.value = await api.getPlats(Number(categorieChoisie.value));
     }
   } catch (e) {
     erreur.value = "Impossible de joindre l'API. Est-elle lancée ?";
